@@ -2,7 +2,16 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import { observable, computed, autorun, action } from 'mobx';
+import {
+  observable,
+  computed,
+  autorun,
+  action,
+  useStrict
+} from 'mobx';
+
+// 严格模式，规定修改所有 observable 成员的时候，必须放在 action 里修改
+// useStrict(true);
 
 class Foo {
   @observable
@@ -19,6 +28,13 @@ class Foo {
     return this.items[this.selected];
   }
 
+  // @action
+  // setSelectedItem(index) {
+  //   if (typeof index === 'number') {
+  //     this.selected = index;
+  //   }
+  // }
+
   @action
   addItem(item) {
     this.items.push(item);
@@ -28,7 +44,7 @@ class Foo {
   removeAt(id) {
     this.items.splice(id, 1);
     if (this.selected >= id) {
-      this.selected --;
+      this.selected--;
     }
   }
 
@@ -36,6 +52,7 @@ class Foo {
   removeSelected() {
     this.items.splice(this.selected, 1);
   }
+
 }
 
 export default function demo5() {
@@ -48,6 +65,7 @@ export default function demo5() {
   foo.addItem(2);
   foo.addItem(3);
 
+  // foo.setSelectedItem(2);
   foo.selected = 2;
 
   foo.removeSelected();

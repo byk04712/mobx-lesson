@@ -2,15 +2,21 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
   Text,
 } from 'react-native';
 
-import { observable } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -51,3 +57,15 @@ export default class Counter1 extends Component {
     );
   }
 }
+
+
+// stateless functional component 无状态的功能组建
+// export default observer(function Counter1(props) {
+//   return (
+//     <View style={styles.container}>
+//         <Text style={styles.value}>{counter.get()}</Text>
+//         <Text style={styles.btn} onPress={inc}>+</Text>
+//         <Text style={styles.btn} onPress={dec}>-</Text>
+//       </View>
+//   );
+// });

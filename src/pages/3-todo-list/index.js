@@ -2,15 +2,26 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { PropTypes, Component } from 'react';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 import {
   StyleSheet,
   ScrollView,
   Text,
 } from 'react-native';
 
-import { observable } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable,
+  action,
+  useStrict
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
+
+useStrict(true);
 
 const styles = StyleSheet.create({
   container: {
@@ -52,15 +63,23 @@ function randomTodoTitle() {
 
 @observer
 class TodoItem extends Component {
+
   static propTypes = {
     data: PropTypes.instanceOf(Todo),
   };
+
+  @action
   onPress = () => {
-    const { data } = this.props;
+    const {
+      data
+    } = this.props;
     data.done = !data.done;
   };
+
   render() {
-    const { data } = this.props;
+    const {
+      data
+    } = this.props;
     return (
       <Text
         style={[styles.item, data.done && styles.done]}
@@ -74,6 +93,7 @@ class TodoItem extends Component {
 
 @observer
 export default class TodoList extends Component {
+
   static hideNavBar = false;
   static title = '3 - TodoList';
   static rightNavTitle = 'Add';
@@ -81,6 +101,7 @@ export default class TodoList extends Component {
   @observable
   todoList = [];
 
+  @action
   onRightPressed() {
     this.todoList.push(new Todo(randomTodoTitle()));
   }

@@ -2,7 +2,9 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
@@ -34,4 +36,5 @@ export default class CounterList extends Component {
       </View>
     );
   }
+
 }

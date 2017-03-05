@@ -3,19 +3,27 @@
  */
 /* eslint-disable react/forbid-prop-types */
 
-import React, { PropTypes, Component } from 'react';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 import {
   View,
   Text,
   TextInput,
   StyleSheet,
 } from 'react-native';
-import { observer } from 'mobx-react/native';
+import {
+  observer
+} from 'mobx-react/native';
+import {
+  action
+} from 'mobx';
+
 import camelCase from 'camelcase';
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   row: {
     height: 60,
     flexDirection: 'row',
@@ -40,6 +48,7 @@ const styles = StyleSheet.create({
 
 @observer
 export default class FormItem extends Component {
+
   static propTypes = {
     name: PropTypes.string.isRequired,
     form: PropTypes.object,
@@ -48,25 +57,42 @@ export default class FormItem extends Component {
 
     ...TextInput.propTypes,
   };
+
   static contextTypes = {
     form: PropTypes.object,
   };
+
   state = {
     focused: this.props.autoFocus,
   };
+
+  @action
   onChangeText = (text) => {
-    const { name } = this.props;
+    const {
+      name
+    } = this.props;
     const form = this.context.form || this.props.form;
     form[name] = text;
   };
+
   onFocus = () => {
     if (!this.state.focused) {
-      this.setState({ focused: true });
+      this.setState({
+        focused: true
+      });
     }
   };
+
   render() {
-    const { name, children, form: _, ...others } = this.props;
-    const { focused } = this.state;
+    const {
+      name,
+      children,
+      form: _,
+      ...others
+    } = this.props;
+    const {
+      focused
+    } = this.state;
     const form = this.context.form || this.props.form;
 
     return (

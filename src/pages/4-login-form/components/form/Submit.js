@@ -3,13 +3,18 @@
  */
 /* eslint-disable react/forbid-prop-types */
 
-import React, { PropTypes, Component } from 'react';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { observer } from 'mobx-react/native';
+import {
+  observer
+} from 'mobx-react/native';
 
 const styles = StyleSheet.create({
   button: {
@@ -27,16 +32,22 @@ const styles = StyleSheet.create({
 
 @observer
 export default class Submit extends Component {
+
   static propTypes = {
     children: PropTypes.string.isRequired,
     form: PropTypes.object,
     onSubmit: PropTypes.func,
   };
+
   static contextTypes = {
     form: PropTypes.object,
   };
+
   render() {
-    const { children, onSubmit } = this.props;
+    const {
+      children,
+      onSubmit
+    } = this.props;
     const form = this.context.form || this.props.form;
     return (
       <TouchableOpacity

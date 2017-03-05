@@ -2,15 +2,21 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
   Text,
 } from 'react-native';
 
-import { observable } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
 
 const styles = StyleSheet.create({
   container: {

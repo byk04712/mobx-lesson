@@ -1,7 +1,10 @@
 /**
  * Created by tdzl2003 on 1/20/17.
  */
-import React, { PropTypes, Component } from 'react';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 
 import {
   View,
@@ -10,18 +13,34 @@ import {
   Text,
 } from 'react-native';
 
-import { observable, action, computed } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable,
+  action,
+  computed,
+  useStrict
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
+
+useStrict(true);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
+  cartList: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#DDD',
+    paddingBottom: 5
+  },
   item: {
     flexDirection: 'row',
     padding: 10,
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F1F1F1'
   },
   price: {
     marginLeft: 10,
@@ -31,6 +50,9 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
   },
+  active: {
+    backgroundColor: '#F7F7F7'
+  }
 });
 
 class CartItem {
@@ -40,6 +62,9 @@ class CartItem {
 
   @observable
   count = 0;
+
+  // @observable
+  // selctedItem = null;
 
   constructor(name, price) {
     this.name = name;
@@ -65,15 +90,20 @@ class Cart {
   items = [];
 
   constructor() {
+    this.initCart();
+  }
+
+  @action('初始化数据')
+  initCart() {
     for (let i = 0; i < 150; i++) {
       this.items.push(new CartItem(
         `商品${i}`,
-        Math.floor(Math.random() * 100000)/100,
+        Math.floor(Math.random() * 100000) / 100,
       ));
     }
-    this.items.push(new CartItem('商品1', 100));
-    this.items.push(new CartItem('商品2', 123.4));
-    this.items.push(new CartItem('商品3', 12345));
+    this.items.push(new CartItem('附加商品1', 100));
+    this.items.push(new CartItem('附加商品2', 123.4));
+    this.items.push(new CartItem('附加商品3', 12345));
   }
 
   @computed
@@ -93,7 +123,10 @@ class Item extends Component {
     data: PropTypes.instanceOf(CartItem),
   };
   render() {
-    const { data } = this.props;
+    const {
+      data
+    } = this.props;
+    console.log('Item render ', data);
     return (
       <View style={styles.item}>
         <Text>{data.name}</Text>
@@ -106,7 +139,10 @@ class Item extends Component {
   }
 };
 
-const Info = observer(function({cart}) {
+const Info = observer(function({
+  cart
+}) {
+  console.log('Info render ', cart);
   return (
     <Text>
       Count: {`${cart.count}`} {'\n'}
@@ -131,11 +167,13 @@ export default class Demo extends Component {
   };
 
   render() {
+    console.log('Demo render ', this.cart);
     return (
       <View style={styles.container}>
         <ListView
           dataSource={this.ds.cloneWithRows(this.cart.items.slice(0))}
           renderRow={this.renderRow}
+          style={styles.cartList}
         />
         <Info cart={this.cart} />
       </View>

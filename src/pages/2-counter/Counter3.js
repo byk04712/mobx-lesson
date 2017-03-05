@@ -2,7 +2,9 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,8 +12,12 @@ import {
   TextInput,
 } from 'react-native';
 
-import { observable } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +30,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 8,
     width: 100,
+    borderWidth: 1,
+    borderColor: 'gray'
   },
   btn: {
     padding: 8,
@@ -33,6 +41,7 @@ const styles = StyleSheet.create({
 
 @observer
 export default class Counter3 extends Component {
+
   @observable
   counter = 0;
 
@@ -45,10 +54,12 @@ export default class Counter3 extends Component {
   };
 
   onChangeText = v => {
-    try {
-      this.counter = parseInt(v);
-    } catch (err) {
+    if (v) {
+      try {
+        this.counter = parseInt(v);
+      } catch (err) {
 
+      }
     }
   };
 
