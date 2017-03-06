@@ -2,7 +2,9 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,8 +12,13 @@ import {
   WebView,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { observer } from 'mobx-react/native';
-import { observable, computed } from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
+import {
+  observable,
+  computed
+} from 'mobx';
 
 const {
   width: SCREEN_WIDTH,
@@ -25,7 +32,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-
   item: {
     flex: 1,
     width: SCREEN_WIDTH,
@@ -33,7 +39,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const Item = observer(function Item({visible, id}) {
+const Item = observer(function Item({
+  visible,
+  id
+}) {
   if (!visible.get()) {
     return <View style={styles.item} />;
   }
@@ -54,6 +63,7 @@ for (let i = 0; i < 1000; i++) {
 }
 
 export default class CounterList extends Component {
+
   static hideNavBar = false;
   static title = '9 - Optimized Swiper';
 
@@ -65,8 +75,10 @@ export default class CounterList extends Component {
     this.currentIndex <= i + 1
   ));
 
-  onMomentumScrollEnd = (ev, state)=>{
-    const { index } = state;
+  onMomentumScrollEnd = (ev, state) => {
+    const {
+      index
+    } = state;
     console.warn(index);
     this.currentIndex = index;
   }

@@ -19,8 +19,7 @@ import {
   Subscribe,
   SubscribeDOM
 } from 'react-subscribe';
-// import Home from './pages/Home';
-import Home from './pages/6-list-and-global-computed/';
+import Home from './pages/Home';
 import NavigatorProvider from './utils/NavigatorProvider';
 import hookNavigator from './utils/hookNavigator';
 import {

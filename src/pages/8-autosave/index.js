@@ -2,7 +2,9 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import {
   StyleSheet,
   View,
@@ -20,7 +22,9 @@ const styles = StyleSheet.create({
 });
 
 export default class CounterList extends Component {
+
   static hideNavBar = false;
+
   static title = '8 - Autosaved';
 
   render() {

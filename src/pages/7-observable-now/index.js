@@ -2,7 +2,10 @@
  * Created by tdzl2003 on 1/20/17.
  */
 
-import React, { PropTypes, Component } from 'react';
+import React, {
+  PropTypes,
+  Component
+} from 'react';
 
 import {
   View,
@@ -14,8 +17,14 @@ import {
   ProgressBarAndroid,
 } from 'react-native';
 
-import { observable, action, computed } from 'mobx';
-import { observer } from 'mobx-react/native';
+import {
+  observable,
+  action,
+  computed
+} from 'mobx';
+import {
+  observer
+} from 'mobx-react/native';
 import moment from 'moment';
 
 const now = observable(moment());
@@ -37,18 +46,20 @@ const styles = StyleSheet.create({
 
 const date = computed(() => now.get().format('YYYY-MM-DD'));
 
-const DateClock = observer(function () {
+const DateClock = observer(function() {
   return <Text>{date.get()}</Text>;
 });
 
 const clock = computed(() => now.get().format('hh:mm:ss'));
 
-const Clock = observer(function () {
+const Clock = observer(function() {
   return <Text>{clock.get()}</Text>;
 });
 
 @observer
 class CoolDown extends Component {
+
+  // 倒计时时间
   @observable
   cooldownAt = moment(0);
 
@@ -75,7 +86,7 @@ class CoolDown extends Component {
     return (
       <Button
         disabled={this.disabled}
-        title={this.disabled ? `${this.coolDown}` : 'Press Me'}
+        title={this.disabled ? this.coolDown : 'Press Me'}
         onPress={this.onPress}
       />
     );
@@ -84,7 +95,7 @@ class CoolDown extends Component {
 
 const cycle = computed(() => now.get() % 3000);
 
-const CycleProgress = observer(function () {
+const CycleProgress = observer(function() {
   if (__IOS__) {
     return (
       <ProgressViewIOS
@@ -100,7 +111,9 @@ const CycleProgress = observer(function () {
 });
 
 export default class Demo extends Component {
+
   static title = '7 - Observable `now`';
+
   render() {
     return (
       <ScrollView style={styles.container}>
