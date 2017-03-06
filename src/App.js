@@ -9,8 +9,7 @@ import {
   AppState,
   StyleSheet,
   View,
-  Navigator,
-  ToastAndroid,
+  Navigator
 } from 'react-native';
 import {
   observer
