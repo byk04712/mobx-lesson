@@ -29,13 +29,15 @@ import moment from 'moment';
 
 const now = observable(moment());
 
-function updateNow() {
-  requestAnimationFrame(action(() => {
-    now.set(moment());
-    updateNow();
-  }));
-}
-updateNow();
+setInterval(() => requestAnimationFrame(action(() => now.set(moment()))), 1000);
+
+// function updateNow() {
+//   requestAnimationFrame(action(() => {
+//     now.set(moment());
+//     updateNow();
+//   }));
+// }
+// updateNow();
 
 const styles = StyleSheet.create({
   container: {
