@@ -1,5 +1,5 @@
 
-本demo源代码来源于[github](https://github.com/tdzl2003/mobx-lesson-20170122)上
+本demo源代码来源于 [ReactNative中文网](http://v.youku.com/v_show/id_XMjQ4NTA4OTUwOA==.html?spm=a2hzp.8253869.0.0&from=y1.7-2)
 
 1. 概念简介
 2. 入门 - Counter
